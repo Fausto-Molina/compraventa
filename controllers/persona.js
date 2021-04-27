@@ -1,9 +1,9 @@
-import persona from '../models/persona.js';
+import Persona from '../models/persona.js';
 
 const personacontrollers = {
     personaGet: async(req, res) => {
         const value = req.query.value
-        const persona = await persona.find({
+        const persona = await Persona.find({
             $or: [
                 { nombre: new RegExp(value, 'i')}
             ]
@@ -17,7 +17,7 @@ const personacontrollers = {
 
     clienteGet: async(req, res) => {
         const value = req.query.value
-        const listaCliente = await persona.find({
+        const listaCliente = await Persona.find({
             $and: [
                 {tipopersona: new RegExp(value, 'i')}
             ]
@@ -29,7 +29,7 @@ const personacontrollers = {
     },
     proveedorGet: async(req, res) => {
         const value = req.query.value
-        const listaproveedor = await persona.find({
+        const listaproveedor = await Persona.find({
              $and: [
                  {tipopersona: new RegExp(value, 'i')}
              ] 
@@ -41,16 +41,17 @@ const personacontrollers = {
     },
     personaGetById: async(req, res)=> {
         const {id} =req.params;
-        const personaid = await persona.findOne({
+        const personaId = await Persona.findOne({
             _id: id
         })
         res.json({
-            personaid
+            personaId
         })
     },
+    
     personapost: async(req, res) => {
         const {tipopersona, nombre, tipoDocumento,numeroDocumento, direccion, telefono, email} = req.body
-        const persona = persona({tipopersona, nombre, tipoDocumento,numeroDocumento,direccion, telefono,email})
+        const persona = Persona({tipopersona, nombre, tipoDocumento,numeroDocumento,direccion, telefono,email})
         await persona.save();
         res.json({
             persona
@@ -59,19 +60,12 @@ const personacontrollers = {
     personaModificarByIdput: async(req,res) => {
         const {id} =req.params
         const {_id,estado, createdAt, __v, ...resto} = req.body
-        const personaeditada = await persona.findByIdAndUpdate(id, resto)
+        const personaeditada = await Persona.findByIdAndUpdate(id, resto)
         res.json({
             personaeditada
         })
     },
-    personaPut: async(req, res) => {
-        const {tipopersona, nombre, tipoDocumento,numeroDocumento, direccion, telefono, email} = req.body
-        const persona = persona({tipopersona, nombre, tipoDocumento,numeroDocumento,direccion, telefono,email})
-        await persona.save();
-        res.json({
-            persona
-        })
-    },
+   
     personaPutActivar: async(req, res) => {
         const {id} = req.params;
         const persona = await Persona.findByIdAndUpdate(id, {estado: 1})
@@ -80,7 +74,11 @@ const personacontrollers = {
         })
     },
     personaPutDesactivar: async(req, res) =>{
-
+        const {id} = req.params;
+        const persona = await Persona.findByIdAndUpdate(id, {estado: 0})
+        res.json({
+            persona
+        })
     },
     personaDelete: async(req, res) => {
 

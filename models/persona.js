@@ -1,14 +1,14 @@
-import mongoose from 'mongoose'
+import mongoose from 'mongoose';
 
 const personaSchema=mongoose.Schema({
-    nombre: {type:String,required:true,maxlength:50,unique:true},
-    tipoDocumento: {type:String,required:true,maxlength:20,unique:true},
-    numDocumento: {type:String,required:true,maxlength:20,unique:true},
-    tipopersona: {type:String,required:true,maxlength:20,unique:true},
-    email: {type:String,required:true,maxlength:50,unique:true},
+    nombre: {type:String,required:true,maxlength:50},
+    tipoDocumento: {type:String,required:true,maxlength:20},
+    numeroDocumento: {type:String,required:true,maxlength:20,uniqued:true},
+    tipopersona: {type:String,required:true,maxlength:20},
+    email: {type:String,maxlength:50},
     direccion:{type:String,maxlength:70},      //1:activo  0:inactivo
     telefono:{type:Number,maxlength:15},
-    
+    estado:{type:Number,default:1},
     createdAt:{type:Date,default:Date.now}
 
 })

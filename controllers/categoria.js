@@ -39,18 +39,6 @@ const categoriacontrollers = {
     })
   }, 
   
-  categoriaGet: async (req,res) =>{
-
-  },
-
-  categoriaGetByid: async (req, res) => {
-
-  },
-
-  categoriaPost: async (req, res) => {
-
-  },
-
   categoriaPut: async (req, res) =>{
      const {id}=req.params
      const {_id,estado,createAt,__v,...resto}=req.body

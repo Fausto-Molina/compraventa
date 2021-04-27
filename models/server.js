@@ -5,8 +5,9 @@ import categoria from '../routes/categoria.js';
 import usuario from '../routes/usuario.js';
 import persona from '../routes/persona.js';
 import compra from '../routes/compra.js';
-import venta from '../routes/ventas.js'
+import venta from '../routes/venta.js';
 import articulo from '../routes/articulo.js';
+
 
 class server{
     constructor(){

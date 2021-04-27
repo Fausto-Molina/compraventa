@@ -1,4 +1,4 @@
-import mongoose from 'mongoose'
+import mongoose from 'mongoose';
 
 const UsuarioSchema=mongoose.Schema({
    nombre:{type:String,required:true,maxlength:50},

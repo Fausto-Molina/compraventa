@@ -1,6 +1,6 @@
-import mongoose from "mongoose";
+import mongoose from 'mongoose'
 
-const compraSchema=mongoose.Schema({
+const ventaSchema=mongoose.Schema({
     usuario:{type:mongoose.Schema.Types.ObjectId,ref:'Usuario',required:true},
     persona:{type:mongoose.Schema.Types.ObjectId,ref:'Persona',required:true},
     tipocomprobante: {type:String,maxlength:20, required:true},
@@ -15,9 +15,9 @@ const compraSchema=mongoose.Schema({
         precio:{type:String,required:true},
         descuento:{type:String,required:true,default:0}
     }],
-    estado:{type:Number, default:1},    
+    estado:{type:Number, default:1},  
     createdAt:{type:Date,default:Date.now}
 
 })
 
-export default mongoose.model('compra',compraSchema);
+export default mongoose.model('venta',ventaSchema);
